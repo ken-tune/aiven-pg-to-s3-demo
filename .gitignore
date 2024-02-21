@@ -1,0 +1,9 @@
+aivenToken.sh
+userSpecific.sh
+terraform.tfstate
+terraform.tfstate.backup
+.terraform
+.terraform.lock.hcl
+certs
+todo.txt
+.DS_Store
