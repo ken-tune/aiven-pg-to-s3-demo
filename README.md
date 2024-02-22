@@ -4,13 +4,7 @@
 
 The purpose of this demo is to show flow of data from Postgres to Parquet files on S3 via CDC capture using Debezium and the Aiven [Kafka to S3](https://docs.aiven.io/docs/products/kafka/kafka-connect/howto/s3-sink-connector-aiven) integration. We will set up the demonstration using the [Aiven Terraform provider](https://registry.terraform.io/providers/aiven/aiven/latest/docs).
 
-## S3 Setup
-
-Create an S3 bucket. Create a user and assign the policy in `useful/s3.policy.json` to that user, having changed the value of YOUR_BUCKET. Obtain the access key id and secret access key for this user.
-
-# Requirements
-
-## Setup
+# Setup
 
 Clone this project
 
@@ -19,11 +13,15 @@ git clone git@github.com:ken-tune/aiven-pg-to-s3-demo.git
 cd aiven-pg-to-s3-demo
 ```
 
+### Pre-requisites
+
 Install 
 
 The [aws command line utility](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
 [Parquet tools](https://pypi.org/project/parquet-tools/)
+
+Postgres Client - instructions [here](https://www.timescale.com/blog/how-to-install-psql-on-mac-ubuntu-debian-windows/)
 
 ### Aiven login token
 
@@ -44,6 +42,10 @@ export TF_VAR_aiven_api_token=mDKaOFyOuRLx59316mWC4k+KTHQEe8
 ...
 0iQfIT9rEde8wbkKoSjeoEHReBPYTbGZ5NUyjftWKjjvS+LJ7Z4+ECC+KYM=
 ```
+
+### S3 Setup
+
+Create an S3 bucket. Create a user and assign the policy in `useful/s3.policy.json` to that user, having changed the value of YOUR_BUCKET. Obtain the access key id and secret access key for this user.
 
 ### User specific data
 
@@ -69,10 +71,10 @@ AWS_S3_BUCKET_NAME=your_s3_bucket_name
 AWS_S3_REGION=your_s3_region
 ```
 
-## Project Setup
+## Service Setup
 
 ```
-./projectSetup.sh
+./serviceSetup.sh
 ```
 
 This will set up Kafka, Postgres, Kafka Connect - visible as *aiven-demo-kafka, aiven-demo-postgres, aiven-demo-kafka-connect* in the Aiven console.
@@ -155,12 +157,12 @@ The cloud / region deployed to is set via ```service-cloud``` in `stage-01/terra
 service_cloud = "google-europe-west2"
 ```
 
-## Project Removal
+## Service Removal
 
 Run
 
 ```
-./projectDestroy.sh
+./serviceDestroy.sh
 ```
 
 to remove the services.
