@@ -1,4 +1,4 @@
-# Postgres to S3 Demo Instructions
+# Aiven Postgres to S3 Demo Instructions
 
 ## Introduction
 
