@@ -119,6 +119,7 @@ resource "aiven_kafka_connector" "kafka-pg-source" {
     "slot.name"                 = "products_repl_slot",
     "publication.name"          = "products_publication",
     "database.ssl.mode"         = "require"
+    "database.tcpKeepAlive"     = true
     "include.schema.changes"    = true
     "include.query"             = true
     "table.include.list"        = "demo.products,demo.debezium_signals,demo.heartbeat" 
@@ -137,7 +138,8 @@ resource "aiven_kafka_connector" "kafka-pg-source" {
     "value.converter.basic.auth.credentials.source" =  "USER_INFO"
     "value.converter.schema.registry.basic.auth.user.info" = "${local.schema_registry_creds}"
     "value.converter.schemas.enable" = "true"
-    "signal.data.collection" = "demo.debezium_signals"    
+    "signal.data.collection" = "demo.debezium_signals"   
+    "topic.prefix" = "aiven.demo" 
     "transforms"="unwrap"
     "transforms.unwrap.type"="io.debezium.transforms.ExtractNewRecordState"
     "transforms.unwrap.drop.tombstones"="true"
