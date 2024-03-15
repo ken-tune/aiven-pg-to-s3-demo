@@ -139,7 +139,7 @@ resource "aiven_kafka_connector" "kafka-pg-source" {
     "value.converter.schema.registry.basic.auth.user.info" = "${local.schema_registry_creds}"
     "value.converter.schemas.enable" = "true"
     "signal.data.collection" = "demo.debezium_signals"   
-    "topic.prefix" = "aiven.demo" 
+    "topic.prefix" = "replicator" 
     "transforms"="unwrap"
     "transforms.unwrap.type"="io.debezium.transforms.ExtractNewRecordState"
     "transforms.unwrap.drop.tombstones"="true"
